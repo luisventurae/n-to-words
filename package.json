@@ -16,9 +16,13 @@
   ],
   "author": "",
   "license": "MIT",
-  "repository": "https://github.com/luisventurae/n-to-words",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luisventurae/n-to-words"
+  },
   "description": "",
   "devDependencies": {
     "typescript": "^5.8.2"
-  }
+  },
+  "npm": "https://www.npmjs.com/package/n-to-words"
 }
