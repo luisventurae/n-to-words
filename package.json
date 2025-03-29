@@ -1,6 +1,6 @@
 {
   "name": "n-to-words",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,6 +11,7 @@
   ],
   "author": "",
   "license": "MIT",
+  "repository": "https://www.npmjs.com/package/n-to-words",
   "description": "",
   "devDependencies": {
     "typescript": "^5.8.2"
