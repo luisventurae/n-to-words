@@ -36,17 +36,11 @@ const leerMiles = (numero: number): string => {
   let [millar, resto] = [Math.floor(numero / 1000), numero % 1000]
   let resultado = ""
 
-  if (millar === 1) {
-    resultado = "mil"  // 🔥 Si es solo 1000, no agregamos "un"
-  } else if (millar < 100) {
-    resultado = `${leerDecenas(millar)} mil`
-  } else {
-    resultado = `${leerCentenas(millar)} mil`  // 🔥 Manejo correcto de centenas
-  }
+  if (millar === 1) resultado = "mil"  // 🔥 Si es solo 1000, no agregamos "un"
+  else if (millar < 100) resultado = `${leerDecenas(millar)} mil`
+  else resultado = `${leerCentenas(millar)} mil`  // 🔥 Manejo correcto de centenas
 
-  if (resto > 0) {
-    resultado += ` ${resto < 100 ? leerDecenas(resto) : leerCentenas(resto)}`
-  }
+  if (resto > 0) resultado += ` ${resto < 100 ? leerDecenas(resto) : leerCentenas(resto)}`
 
   return resultado
 }
@@ -55,13 +49,9 @@ const leerMillones = (numero: number): string => {
   let [millon, resto] = [Math.floor(numero / 1000000), numero % 1000000]
   let resultado = ""
 
-  if (millon === 1) {
-    resultado = "un millón"
-  } else if (millon < 100) {
-    resultado = `${leerDecenas(millon)} millones`
-  } else {
-    resultado = `${leerCentenas(millon)} millones`  // 🔥 Se usa leerCentenas para manejar cientos de millones
-  }
+  if (millon === 1) resultado = "un millón"
+  else if (millon < 100) resultado = `${leerDecenas(millon)} millones`
+  else resultado = `${leerCentenas(millon)} millones`  // 🔥 Se usa leerCentenas para manejar cientos de millones
 
   if (resto > 0) resultado += ` ${leerMiles(resto)}`
   return resultado
@@ -91,17 +81,13 @@ const convertirNumeroLetras = (numero: number, codigoMoneda: codesMoney): string
   const decimal = Math.round((numero - entero) * 100)
 
   // 🛠️ Manejo especial cuando el número es menor que 1
-  if (entero === 0 && decimal > 0) {
-    return `${numeroALetras(decimal).toUpperCase()} ${moneda.centimos_plural.toUpperCase()}`
-  }
+  if (entero === 0 && decimal > 0) return `${numeroALetras(decimal).toUpperCase()} ${moneda.centimos_plural.toUpperCase()}`
 
   const letrasEntero = numeroALetras(entero).toUpperCase()
-  const monedaNombre =
-    entero === 1 ? moneda.singular.toUpperCase() : moneda.plural.toUpperCase()
-  const letrasDecimal =
-    decimal > 0
-      ? `Y ${decimal.toString().padStart(2, "0")}/100 ${moneda.centimos_plural.toUpperCase()}`
-      : "Y 00/100 CÉNTIMOS"
+  const monedaNombre = entero === 1 ? moneda.singular.toUpperCase() : moneda.plural.toUpperCase()
+  const letrasDecimal = decimal > 0
+    ? `Y ${decimal.toString().padStart(2, "0")}/100 ${moneda.centimos_plural.toUpperCase()}`
+    : "Y 00/100 CÉNTIMOS"
 
   return `${letrasEntero} ${monedaNombre} ${letrasDecimal}`
 }
