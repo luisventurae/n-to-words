@@ -8,7 +8,11 @@
     "start": "node index.js"
   },
   "keywords": [
-    "numero-a-letras"
+    "numero-a-letras",
+    "moneda-a-texto",
+    "typescript",
+    "n-to-words",
+    "n-to-words-es"
   ],
   "author": "",
   "license": "MIT",

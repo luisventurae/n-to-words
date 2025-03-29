@@ -1,4 +1,3 @@
-type codesMoney = 'PEN' | 'USD' | 'EUR'
 /******************************************************
  *_____________________________________________________
  *
@@ -12,10 +11,12 @@ type codesMoney = 'PEN' | 'USD' | 'EUR'
  * Version mejorada
  ******************************************************/
 
-import MONEDAS from "./monedas"
+import MONEDAS, { codesMoney } from "./monedas"
 import { UNIDADES, DECENAS, DIEZ_DIEZ, CIENTOS } from "./unidades"
 
-const leerDecenas = (numero: number) => {
+const max_supported = 999999999 as const
+
+const leerDecenas = (numero: number): string => {
   if (numero < 10) return UNIDADES[numero]
   let [decena, unidad] = [Math.floor(numero / 10), numero % 10]
   if (numero < 20) return DECENAS[unidad]
@@ -25,13 +26,13 @@ const leerDecenas = (numero: number) => {
   return resultado
 }
 
-const leerCentenas = (numero: number) => {
+const leerCentenas = (numero: number): string => {
   let [centena, resto] = [Math.floor(numero / 100), numero % 100]
   if (resto === 0) return CIENTOS[centena]
   return `${CIENTOS[centena]} ${leerDecenas(resto)}`
 }
 
-const leerMiles = (numero: number) => {
+const leerMiles = (numero: number): string => {
   let [millar, resto] = [Math.floor(numero / 1000), numero % 1000]
   let resultado = ""
 
@@ -50,8 +51,7 @@ const leerMiles = (numero: number) => {
   return resultado
 }
 
-
-const leerMillones = (numero: number) => {
+const leerMillones = (numero: number): string => {
   let [millon, resto] = [Math.floor(numero / 1000000), numero % 1000000]
   let resultado = ""
 
@@ -71,7 +71,9 @@ const leerMillones = (numero: number) => {
 //   let [millardo, millon] = [Math.floor(numero / 1000000)]
 // }
 
-const numeroALetras = (numero: number) => {
+const numeroALetras = (numero: number): string => {
+  if (numero > max_supported) throw new RangeError(`Número fuera de rango: ${numero} (máximum supported: ${max_supported})`)
+
   let entero = Math.floor(numero)
   if (entero < 100) return leerDecenas(entero)
   if (entero < 1000) return leerCentenas(entero)
@@ -79,7 +81,9 @@ const numeroALetras = (numero: number) => {
   return leerMillones(entero)
 }
 
-const convertirNumeroLetras = (numero: number, codigoMoneda: codesMoney) => {
+const convertirNumeroLetras = (numero: number, codigoMoneda: codesMoney): string => {
+  if (numero > max_supported) throw new RangeError(`Número fuera de rango: ${numero} (máximum supported: ${max_supported})`)
+
   const moneda = MONEDAS[codigoMoneda]
   if (!moneda) throw new Error(`Código de moneda inválido: ${codigoMoneda}`)
 

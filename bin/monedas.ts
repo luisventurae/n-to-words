@@ -10,6 +10,7 @@
  * documentos como boletas y facturas.
  *
  ******************************************************/
+export type codesMoney = 'PEN' | 'USD' | 'EUR'
 
 const MONEDAS = {
   PEN: {

@@ -1,8 +1,4 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
 /******************************************************
  *_____________________________________________________
  *
@@ -15,8 +11,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * documentos como boletas y facturas.
  * Version mejorada
  ******************************************************/
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 const monedas_1 = __importDefault(require("./monedas"));
 const unidades_1 = require("./unidades");
+const max_supported = 999999999;
 const leerDecenas = (numero) => {
     if (numero < 10)
         return unidades_1.UNIDADES[numero];
@@ -73,6 +74,8 @@ const leerMillones = (numero) => {
 //   let [millardo, millon] = [Math.floor(numero / 1000000)]
 // }
 const numeroALetras = (numero) => {
+    if (numero > max_supported)
+        throw new RangeError(`Número fuera de rango: ${numero} (máximum supported: ${max_supported})`);
     let entero = Math.floor(numero);
     if (entero < 100)
         return leerDecenas(entero);
@@ -83,6 +86,8 @@ const numeroALetras = (numero) => {
     return leerMillones(entero);
 };
 const convertirNumeroLetras = (numero, codigoMoneda) => {
+    if (numero > max_supported)
+        throw new RangeError(`Número fuera de rango: ${numero} (máximum supported: ${max_supported})`);
     const moneda = monedas_1.default[codigoMoneda];
     if (!moneda)
         throw new Error(`Código de moneda inválido: ${codigoMoneda}`);
