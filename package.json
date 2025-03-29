@@ -20,7 +20,7 @@
     "type": "git",
     "url": "https://github.com/luisventurae/n-to-words"
   },
-  "description": "",
+  "description": "Convert numbers to text in plain text format or for electronic bills and invoices",
   "devDependencies": {
     "typescript": "^5.8.2"
   },
