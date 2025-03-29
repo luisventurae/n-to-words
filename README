@@ -13,9 +13,9 @@ Este paquete es una herramienta útil para convertir números a su representaci�
     **Ejemplo de Uso:**
 
     ```js
-    const { numeroALetras } = require("moneda-a-texto");
+    import ntw from "n-to-words";
 
-    console.log(numeroALetras(120.0));  // Salida: ciento veinte  
+    console.log(ntw.numeroALetras(120.0));  // Salida: ciento veinte  
     ```
 
 1. `convertirNumeroLetras()`
@@ -26,9 +26,9 @@ Este paquete es una herramienta útil para convertir números a su representaci�
     **Ejemplo de Uso:**
 
     ```js
-    const { convertirNumeroLetras } = require("moneda-a-texto");
+    import ntw from "n-to-words";
     
-    console.log(convertirNumeroLetras(120, "PEN"));  // Salida: CIENTO VEINTE SOLES Y 00/100 CÉNTIMOS   
+    console.log(ntw.convertirNumeroLetras(120, "PEN"));  // Salida: CIENTO VEINTE SOLES Y 00/100 CÉNTIMOS   
     ```
     
 ## Códigos de Moneda Disponibles
@@ -44,7 +44,7 @@ Este paquete es una herramienta útil para convertir números a su representaci�
 Agrega el paquete a tu proyecto usando npm:
 
 ```bash
-npm i moneda-a-texto
+npm i n-to-words
 ```
 
 

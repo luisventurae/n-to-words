@@ -1,1 +1,2 @@
-import './bin/n-to-words'
+import ntw from './bin/n-to-words'
+export default ntw
