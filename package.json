@@ -1,10 +1,11 @@
 {
   "name": "n-to-words",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc -b"
+    "build": "npx tsc -b",
+    "start": "node index.js"
   },
   "keywords": [
     "numero-a-letras"
