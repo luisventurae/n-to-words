@@ -87,7 +87,7 @@ const convertirNumeroLetras = (numero: number, codigoMoneda: codesMoney): string
   const monedaNombre = entero === 1 ? moneda.singular.toUpperCase() : moneda.plural.toUpperCase()
   const letrasDecimal = decimal > 0
     ? `Y ${decimal.toString().padStart(2, "0")}/100 ${moneda.centimos_plural.toUpperCase()}`
-    : "Y 00/100 CÉNTIMOS"
+    : `Y 00/100 ${moneda.centimos_plural.toUpperCase()}`
 
   return `${letrasEntero} ${monedaNombre} ${letrasDecimal}`
 }

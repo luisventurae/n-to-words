@@ -29,7 +29,7 @@ Este paquete es una herramienta útil para convertir números a su representaci�
     import ntw from "n-to-words";
     
     console.log(ntw.convertirNumeroLetras(12000,'PEN'));  // Salida: DOCE MIL SOLES Y 00/100 CÉNTIMOS
-    console.log(ntw.convertirNumeroLetras(652, "USD"));  // Salida: SEISCIENTOS CINCUENTA Y DOS DÓLARES AMERICANOS Y 00/100 CÉNTIMOS
+    console.log(ntw.convertirNumeroLetras(652, "USD"));  // Salida: SEISCIENTOS CINCUENTA Y DOS DÓLARES AMERICANOS Y 00/100 CENTAVOS
     console.log(ntw.convertirNumeroLetras(10000,'EUR'));  // Salida: DIEZ MIL EUROS Y 00/100 CÉNTIMOS
     ```
     
