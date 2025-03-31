@@ -1,6 +1,6 @@
 {
   "name": "n-to-words",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -8,13 +8,21 @@
     "start": "node index.js"
   },
   "keywords": [
-    "numero-a-letras"
+    "numero-a-letras",
+    "moneda-a-texto",
+    "typescript",
+    "n-to-words",
+    "n-to-words-es"
   ],
   "author": "",
   "license": "MIT",
-  "repository": "https://github.com/luisventurae/n-to-words",
-  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luisventurae/n-to-words"
+  },
+  "description": "Convert numbers to text in plain text format or for electronic bills and invoices",
   "devDependencies": {
     "typescript": "^5.8.2"
-  }
+  },
+  "npm": "https://www.npmjs.com/package/n-to-words"
 }

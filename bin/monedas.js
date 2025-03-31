@@ -1,16 +1,4 @@
 "use strict";
-/******************************************************
- *_____________________________________________________
- *
- * Autor       :  Jamesllm
- * ____________________________________________________
- *
- * Este paquete es una herramienta útil para convertir
- * números a su representación textual. Ideal para
- * aplicaciones que requieren formatos específicos en
- * documentos como boletas y facturas.
- *
- ******************************************************/
 Object.defineProperty(exports, "__esModule", { value: true });
 const MONEDAS = {
     PEN: {

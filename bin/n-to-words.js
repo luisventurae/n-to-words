@@ -1,12 +1,8 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
 /******************************************************
  *_____________________________________________________
  *
- * Autor       :  ocordova
+ * Autor       :  luisventurae
  * ____________________________________________________
  *
  * Este paquete es una herramienta útil para convertir
@@ -15,8 +11,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * documentos como boletas y facturas.
  * Version mejorada
  ******************************************************/
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 const monedas_1 = __importDefault(require("./monedas"));
 const unidades_1 = require("./unidades");
+const max_supported = 999999999;
 const leerDecenas = (numero) => {
     if (numero < 10)
         return unidades_1.UNIDADES[numero];
@@ -39,32 +40,25 @@ const leerCentenas = (numero) => {
 const leerMiles = (numero) => {
     let [millar, resto] = [Math.floor(numero / 1000), numero % 1000];
     let resultado = "";
-    if (millar === 1) {
+    if (millar === 1)
         resultado = "mil"; // 🔥 Si es solo 1000, no agregamos "un"
-    }
-    else if (millar < 100) {
+    else if (millar < 100)
         resultado = `${leerDecenas(millar)} mil`;
-    }
-    else {
+    else
         resultado = `${leerCentenas(millar)} mil`; // 🔥 Manejo correcto de centenas
-    }
-    if (resto > 0) {
+    if (resto > 0)
         resultado += ` ${resto < 100 ? leerDecenas(resto) : leerCentenas(resto)}`;
-    }
     return resultado;
 };
 const leerMillones = (numero) => {
     let [millon, resto] = [Math.floor(numero / 1000000), numero % 1000000];
     let resultado = "";
-    if (millon === 1) {
+    if (millon === 1)
         resultado = "un millón";
-    }
-    else if (millon < 100) {
+    else if (millon < 100)
         resultado = `${leerDecenas(millon)} millones`;
-    }
-    else {
+    else
         resultado = `${leerCentenas(millon)} millones`; // 🔥 Se usa leerCentenas para manejar cientos de millones
-    }
     if (resto > 0)
         resultado += ` ${leerMiles(resto)}`;
     return resultado;
@@ -73,6 +67,8 @@ const leerMillones = (numero) => {
 //   let [millardo, millon] = [Math.floor(numero / 1000000)]
 // }
 const numeroALetras = (numero) => {
+    if (numero > max_supported)
+        throw new RangeError(`Número fuera de rango: ${numero} (máximum supported: ${max_supported})`);
     let entero = Math.floor(numero);
     if (entero < 100)
         return leerDecenas(entero);
@@ -83,20 +79,21 @@ const numeroALetras = (numero) => {
     return leerMillones(entero);
 };
 const convertirNumeroLetras = (numero, codigoMoneda) => {
+    if (numero > max_supported)
+        throw new RangeError(`Número fuera de rango: ${numero} (máximum supported: ${max_supported})`);
     const moneda = monedas_1.default[codigoMoneda];
     if (!moneda)
         throw new Error(`Código de moneda inválido: ${codigoMoneda}`);
     const entero = Math.floor(numero);
     const decimal = Math.round((numero - entero) * 100);
     // 🛠️ Manejo especial cuando el número es menor que 1
-    if (entero === 0 && decimal > 0) {
+    if (entero === 0 && decimal > 0)
         return `${numeroALetras(decimal).toUpperCase()} ${moneda.centimos_plural.toUpperCase()}`;
-    }
     const letrasEntero = numeroALetras(entero).toUpperCase();
     const monedaNombre = entero === 1 ? moneda.singular.toUpperCase() : moneda.plural.toUpperCase();
     const letrasDecimal = decimal > 0
         ? `Y ${decimal.toString().padStart(2, "0")}/100 ${moneda.centimos_plural.toUpperCase()}`
-        : "Y 00/100 CÉNTIMOS";
+        : `Y 00/100 ${moneda.centimos_plural.toUpperCase()}`;
     return `${letrasEntero} ${monedaNombre} ${letrasDecimal}`;
 };
 const getTest = () => {

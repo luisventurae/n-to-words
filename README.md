@@ -1,8 +1,8 @@
 # Number to letters
 
-**Convierte números a texto en formato para boletas y facturas electrónicas según la SUNAT Perú.**
+**Convierte números a texto en formato simple o para boletas y facturas electrónicas**
 
-Este paquete es una herramienta útil para convertir números a su representación textual. Ideal para aplicaciones que requieren formatos específicos en documentos como boletas y facturas.
+Este paquete es una herramienta útil para convertir números a su representación textual. Ideal para aplicaciones que requieren formatos específicos en documentos como boletas y facturas. 
 
 
 ## Funciones Disponibles
@@ -28,7 +28,9 @@ Este paquete es una herramienta útil para convertir números a su representaci�
     ```js
     import ntw from "n-to-words";
     
-    console.log(ntw.convertirNumeroLetras(120, "PEN"));  // Salida: CIENTO VEINTE SOLES Y 00/100 CÉNTIMOS   
+    console.log(ntw.convertirNumeroLetras(12000,'PEN'));  // Salida: DOCE MIL SOLES Y 00/100 CÉNTIMOS
+    console.log(ntw.convertirNumeroLetras(652, "USD"));  // Salida: SEISCIENTOS CINCUENTA Y DOS DÓLARES AMERICANOS Y 00/100 CENTAVOS
+    console.log(ntw.convertirNumeroLetras(10000,'EUR'));  // Salida: DIEZ MIL EUROS Y 00/100 CÉNTIMOS
     ```
     
 ## Códigos de Moneda Disponibles
@@ -49,5 +51,10 @@ npm i n-to-words
 
 
 ## Notas
+- Compatible con typescript.
 - Asegúrate de usar el código de moneda correcto para evitar errores en el formato de salida.
 - Este paquete es compatible con Node.js y es ideal para integrarlo en sistemas de facturación o gestión administrativa.
+- Soporte máximo actual `999999999`.
+
+### Referencias
+- [moneda-a-texto](https://www.npmjs.com/package/moneda-a-texto)
